@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### H2 Database ###
+*.mv.db
+*.trace.db
+
+### Android local config ###
+local.properties
