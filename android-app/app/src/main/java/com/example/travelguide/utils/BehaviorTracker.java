@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.travelguide.api.ApiClient;
 import com.example.travelguide.api.ApiService;
+import com.example.travelguide.model.UserBehavior;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -200,6 +201,3 @@ public class BehaviorTracker {
         return userId;
     }
 }
-
-// 引入UserBehavior类
-import com.example.travelguide.model.UserBehavior;
