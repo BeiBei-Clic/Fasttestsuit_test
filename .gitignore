@@ -42,3 +42,11 @@ out/
 
 ### Android local config ###
 local.properties
+
+### macOS ###
+.DS_Store
+
+### Android SDK/AAR files ###
+*.aar
+android-app/app/libs/
+android-app/iOSSDK/
