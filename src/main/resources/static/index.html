@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行攻略 API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+        .api-list {
+            list-style: none;
+        }
+        .api-list li {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .api-list li:hover {
+            background: #e9ecef;
+        }
+        .method {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+        .get { background: #61affe; color: white; }
+        .post { background: #49cc90; color: white; }
+        .put { background: #fca130; color: white; }
+        .delete { background: #f93e3e; color: white; }
+        .path {
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #333;
+            flex: 1;
+        }
+        .desc {
+            color: #666;
+            font-size: 14px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #28a745;
+            color: white;
+            font-size: 14px;
+        }
+        .test-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .account {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .account h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .account p {
+            color: #666;
+            margin: 4px 0;
+        }
+        code {
+            background: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 旅行攻略 API</h1>
+            <p>移动软件测试工具体验作业 - 后端服务</p>
+            <p style="margin-top: 10px;"><span class="status">服务运行中</span></p>
+        </div>
+
+        <div class="card">
+            <h2>👤 用户接口</h2>
+            <ul class="api-list">
+                <li>
+                    <span class="method post">POST</span>
+                    <span class="path">/api/users/register</span>
+                    <span class="desc">用户注册</span>
+                </li>
+                <li>
+                    <span class="method post">POST</span>
+                    <span class="path">/api/users/login</span>
+                    <span class="desc">用户登录</span>
+                </li>
+                <li>
+                    <span class="method post">POST</span>
+                    <span class="path">/api/users/logout</span>
+                    <span class="desc">用户登出</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/users/me</span>
+                    <span class="desc">获取当前用户</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📍 目的地接口</h2>
+            <ul class="api-list">
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/destinations</span>
+                    <span class="desc">获取所有目的地</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/destinations/{id}</span>
+                    <span class="desc">获取目的地详情</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/destinations/search?location=xxx</span>
+                    <span class="desc">搜索目的地</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/destinations/popular</span>
+                    <span class="desc">获取热门目的地</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📝 攻略接口</h2>
+            <ul class="api-list">
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/guides</span>
+                    <span class="desc">获取所有攻略</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/guides/{id}</span>
+                    <span class="desc">获取攻略详情</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/guides/search?keyword=xxx</span>
+                    <span class="desc">搜索攻略</span>
+                </li>
+                <li>
+                    <span class="method post">POST</span>
+                    <span class="path">/api/guides/{id}/like</span>
+                    <span class="desc">点赞攻略</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📊 用户行为追踪接口</h2>
+            <ul class="api-list">
+                <li>
+                    <span class="method post">POST</span>
+                    <span class="path">/api/behavior/page-view</span>
+                    <span class="desc">记录页面访问</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/behavior/session/{sessionId}</span>
+                    <span class="desc">获取会话行为记录</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/behavior/user/{userId}</span>
+                    <span class="desc">获取用户行为统计</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>⚠️ 异常测试接口（供Fasttestsuit捕获）</h2>
+            <ul class="api-list">
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/test/null-pointer?trigger=true</span>
+                    <span class="desc">空指针异常</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/test/arithmetic?divisor=0</span>
+                    <span class="desc">算术异常(除零)</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/test/index-out-of-bounds?index=10</span>
+                    <span class="desc">数组越界异常</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/test/number-format?number=abc</span>
+                    <span class="desc">数字格式异常</span>
+                </li>
+                <li>
+                    <span class="method get">GET</span>
+                    <span class="path">/api/test/resource-not-found?id=999</span>
+                    <span class="desc">资源未找到异常</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🔑 测试账号</h2>
+            <div class="test-accounts">
+                <div class="account">
+                    <h4>普通用户</h4>
+                    <p>用户名: <code>testuser</code></p>
+                    <p>密码: <code>123456</code></p>
+                </div>
+                <div class="account">
+                    <h4>管理员</h4>
+                    <p>用户名: <code>admin</code></p>
+                    <p>密码: <code>admin123</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🗄️ H2数据库控制台</h2>
+            <p>访问 <a href="/h2-console" target="_blank">/h2-console</a> 查看数据库</p>
+            <p style="margin-top: 10px;">连接信息：</p>
+            <ul style="margin-top: 8px; margin-left: 20px; color: #666;">
+                <li>JDBC URL: <code>jdbc:h2:file:./data/travel-guide</code></li>
+                <li>用户名: <code>sa</code></li>
+                <li>密码: (空)</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>移动软件测试工具体验作业 | Fasttestsuit (www.i-test.com.cn)</p>
+        </div>
+    </div>
+</body>
+</html>

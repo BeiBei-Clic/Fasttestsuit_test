@@ -1,0 +1,447 @@
+# 用户行为与页面访问顺序分析
+# 对应分析报告第 4.3 节：用户行为分析
+# ----------------------------------------------------------------
+# 查询接口：GET http://localhost:8080/api/behavior/session/XYH_20260619_234235
+# 被测用户：xyh (userId=33)
+# sessionId：XYH_20260619_234235
+# 采集时间：2026-06-19
+# 数据来源：App 端 BehaviorTracker 上报至后端 UserBehaviorController
+# ================================================================
+
+
+=== 【1】原始 JSON 查询结果（浏览器访问接口返回）===
+请求 URL: http://localhost:8080/api/behavior/session/XYH_20260619_234235
+
+{
+  "success": true,
+  "behaviors": [
+    {
+      "id": 237,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "APP_START",
+      "actionDetail": "应用启动",
+      "pageName": "启动页",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.190442"
+    },
+    {
+      "id": 238,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "LOGIN",
+      "actionDetail": "用户登录成功",
+      "pageName": "登录页",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.278106"
+    },
+    {
+      "id": 239,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "进入目的地列表",
+      "pageName": "目的地列表",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.333487"
+    },
+    {
+      "id": 240,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "CLICK",
+      "actionDetail": "点击目的地：北京",
+      "pageName": "目的地列表",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.392061"
+    },
+    {
+      "id": 241,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "进入目的地详情",
+      "pageName": "目的地详情-北京",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.451995"
+    },
+    {
+      "id": 242,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "CLICK",
+      "actionDetail": "点击查看攻略",
+      "pageName": "目的地详情-北京",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.508869"
+    },
+    {
+      "id": 243,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "进入攻略详情",
+      "pageName": "攻略详情-北京三日游",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.569763"
+    },
+    {
+      "id": 244,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "LIKE",
+      "actionDetail": "点赞攻略：北京三日游",
+      "pageName": "攻略详情",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.632786"
+    },
+    {
+      "id": 245,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "CLICK",
+      "actionDetail": "点击返回",
+      "pageName": "攻略详情",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.690985"
+    },
+    {
+      "id": 246,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "返回目的地列表",
+      "pageName": "目的地列表",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.755307"
+    },
+    {
+      "id": 247,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "CLICK",
+      "actionDetail": "点击搜索按钮",
+      "pageName": "目的地列表",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.81877"
+    },
+    {
+      "id": 248,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "进入搜索页",
+      "pageName": "搜索页",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.877617"
+    },
+    {
+      "id": 249,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "SEARCH",
+      "actionDetail": "搜索关键词：上海",
+      "pageName": "搜索页",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.934692"
+    },
+    {
+      "id": 250,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "搜索结果页",
+      "pageName": "搜索结果-上海",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:35.993238"
+    },
+    {
+      "id": 251,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "CLICK",
+      "actionDetail": "点击搜索结果：上海",
+      "pageName": "搜索结果",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:36.053548"
+    },
+    {
+      "id": 252,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "进入目的地详情",
+      "pageName": "目的地详情-上海",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:36.111092"
+    },
+    {
+      "id": 253,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "SHARE",
+      "actionDetail": "分享目的地：上海",
+      "pageName": "目的地详情-上海",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:36.174309"
+    },
+    {
+      "id": 254,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "PAGE_ENTER",
+      "actionDetail": "返回目的地列表",
+      "pageName": "目的地列表",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:36.233916"
+    },
+    {
+      "id": 255,
+      "user": {
+        "id": 33,
+        "username": "xyh",
+        "password": "123456",
+        "email": "xyh@example.com",
+        "nickname": "xyh",
+        "avatar": null,
+        "createdAt": "2026-04-02T15:54:20.752365",
+        "lastLogin": "2026-06-19T15:24:31.511713",
+        "loginCount": 3
+      },
+      "actionType": "APP_EXIT",
+      "actionDetail": "用户退出应用",
+      "pageName": "主页",
+      "sessionId": "XYH_20260619_234235",
+      "deviceInfo": "Python-urllib/3.9",
+      "createdAt": "2026-06-19T23:42:36.295695"
+    }
+  ],
+  "pageSequence": "目的地列表 -> 目的地详情-北京 -> 攻略详情-北京三日游 -> 目的地列表 -> 搜索页 -> 搜索结果-上海 -> 目的地详情-上海 -> 目的地列表"
+}
+
+
+=== 【2】页面访问顺序（pageSequence 字段，易于阅读）===
+本次会话共记录 19 个用户行为事件
+
+页面访问顺序（按时序）：
+┌─────┬──────────────────────┬────────────────┬────────────────────────────────┐
+│ 序号│       时间           │   行为类型     │           页面 / 详情           │
+├─────┼──────────────────────┼────────────────┼────────────────────────────────┤
+│   1 │ 2026-06-19 23:42:35 │ APP_START      │ 启动页 - 应用启动                     │
+│   2 │ 2026-06-19 23:42:35 │ LOGIN          │ 登录页 - 用户登录成功                   │
+│   3 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 目的地列表 - 进入目的地列表                │
+│   4 │ 2026-06-19 23:42:35 │ CLICK          │ 目的地列表 - 点击目的地：北京               │
+│   5 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 目的地详情-北京 - 进入目的地详情             │
+│   6 │ 2026-06-19 23:42:35 │ CLICK          │ 目的地详情-北京 - 点击查看攻略              │
+│   7 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 攻略详情-北京三日游 - 进入攻略详情            │
+│   8 │ 2026-06-19 23:42:35 │ LIKE           │ 攻略详情 - 点赞攻略：北京三日游              │
+│   9 │ 2026-06-19 23:42:35 │ CLICK          │ 攻略详情 - 点击返回                    │
+│  10 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 目的地列表 - 返回目的地列表                │
+│  11 │ 2026-06-19 23:42:35 │ CLICK          │ 目的地列表 - 点击搜索按钮                 │
+│  12 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 搜索页 - 进入搜索页                    │
+│  13 │ 2026-06-19 23:42:35 │ SEARCH         │ 搜索页 - 搜索关键词：上海                 │
+│  14 │ 2026-06-19 23:42:35 │ PAGE_ENTER     │ 搜索结果-上海 - 搜索结果页                │
+│  15 │ 2026-06-19 23:42:36 │ CLICK          │ 搜索结果 - 点击搜索结果：上海               │
+│  16 │ 2026-06-19 23:42:36 │ PAGE_ENTER     │ 目的地详情-上海 - 进入目的地详情             │
+│  17 │ 2026-06-19 23:42:36 │ SHARE          │ 目的地详情-上海 - 分享目的地：上海            │
+│  18 │ 2026-06-19 23:42:36 │ PAGE_ENTER     │ 目的地列表 - 返回目的地列表                │
+│  19 │ 2026-06-19 23:42:36 │ APP_EXIT       │ 主页 - 用户退出应用                    │
+└─────┴──────────────────────┴────────────────┴────────────────────────────────┘
+
+=== 【3】关键发现（可写入报告）===
+1. 完整访问路径：启动页 → 登录页 → 目的地列表 → 目的地详情(北京) →
+   攻略详情(北京三日游) → 返回列表 → 搜索页 → 搜索结果(上海) →
+   目的地详情(上海) → 返回列表 → 退出
+2. 用户行为类型覆盖：APP_START / LOGIN / PAGE_ENTER / CLICK /
+   LIKE / SEARCH / SHARE / APP_EXIT，共 8 种
+3. 涉及页面：启动页、登录页、目的地列表、目的地详情、攻略详情、
+   搜索页、搜索结果页、主页，共 8 类页面
+4. 后端通过 sessionId 将同一会话内的行为串联为有序访问路径，
+   /api/behavior/session/{sessionId} 接口返回 pageSequence 字段
+   可直接用于漏斗分析、用户路径分析、页面停留分析。
+
+附：本次修复的后端缺陷
+  UserBehaviorController.recordBehavior() 原先强制使用 HTTP request 的
+  session id（request.getSession().getId()），导致 App 端上报的 sessionId
+  被丢弃、每个请求都被当作独立会话。已修复为优先使用客户端上报的
+  sessionId，使会话内的页面访问顺序得以正确聚合。

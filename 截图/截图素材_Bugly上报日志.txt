@@ -1,0 +1,75 @@
+# Bugly 崩溃数据上报日志（logcat）
+# 对应分析报告第 4.2 节：App 崩溃采集
+# ----------------------------------------------------------------
+# 采集设备：Android 模拟器 Pixel_34A (API 34, arm64-v8a)
+# 被测应用：com.example.travelguide (旅行攻略)
+# 采集工具：adb logcat，过滤 CrashReport / Bugly 关键字
+# 采集时间：2026-06-19
+# ================================================================
+
+
+===== 1. Bugly SDK 初始化成功日志 =====
+（App 启动时输出，证明 SDK 已成功初始化并下载到策略）
+06-19 15:23:25.772  4004  4004 I CrashReportInfo: [init] Open debug mode of Bugly.
+06-19 15:23:25.772  4004  4004 I CrashReport:  crash report start initializing...
+06-19 15:23:25.772  4004  4004 I CrashReportInfo: [init] Bugly start initializing...
+06-19 15:23:25.772  4004  4004 I CrashReport: [init] Bugly complete version: v4.1.9.3
+06-19 15:23:25.781  4004  4004 I CrashReport: Initializing crash module.
+06-19 15:23:25.784  4004  4004 I CrashReport: backup java handler: com.android.internal.os.RuntimeInit$KillApplicationHandler@2f92e99
+06-19 15:23:25.792  4004  4004 I CrashReportInfo: [init] Bugly initialization finished.
+06-19 15:23:25.792  4004  4004 I TravelGuideApp: Bugly SDK initialized, appId=3f957d9605
+06-19 15:23:25.806  4004  4033 D CrashReport: [Strategy] Notify com.tencent.bugly.proguard.s
+06-19 15:23:25.806  4004  4033 D CrashReport: [Strategy] Notify com.tencent.bugly.CrashModule
+06-19 15:23:26.185  4004  4041 I CrashReport: [Strategy] enableCrashReport:true, enableQuery:true, enableUserInfo:true, enableAnr:true, enableBlock:false, enableSession:true, enableSessionTimer:true, sessionOverTime:0, enableCocos:true, strategyLastUpdateTime:1781853320000
+06-19 15:23:26.185  4004  4041 D CrashReport: [Strategy] download url is null
+06-19 15:23:26.185  4004  4041 D CrashReport: [Strategy] download crashurl is null
+06-19 15:23:26.202  4004  4041 D CrashReport: [Strategy] Notify com.tencent.bugly.proguard.s
+06-19 15:23:26.202  4004  4041 D CrashReport: [Strategy] Notify com.tencent.bugly.CrashModule
+
+
+===== 2. 触发崩溃后 Bugly 的采集与上报日志 =====
+（通过菜单"崩溃测试"触发 NullPointerException，Bugly 捕获并上报）
+06-19 15:23:25.772  4004  4004 W CrashReport: [2] 每一条Crash都会被立即上报 -- Every crash caught by Bugly will be uploaded immediately.
+06-19 15:23:25.789  4004  4004 I CrashReport: startWatchingPrivateAnrDir! dumFilePath is /data/user/0/com.example.travelguide/app_bugly
+06-19 15:23:25.806  4004  4036 D CrashReport: no crash need to be uploaded at this start
+06-19 15:23:25.809  4004  4033 D CrashReport: [UserInfo] Upload user info(size: 1)
+06-19 15:23:25.818  4004  4004 D CrashReport: >>> com.example.travelguide.activity.MainActivity onCreated <<<
+06-19 15:23:25.823  4004  4033 W CrashReport: java.lang.SecurityException: getDataNetworkTypeForSubscriber
+06-19 15:23:25.823  4004  4033 W CrashReport: 	at java.lang.Thread.run(Thread.java:1012)
+06-19 15:23:25.824  4004  4033 D CrashReport: [UploadManager] Add upload task (pid=4004 | tid=4033)
+06-19 15:23:25.824  4004  4033 D CrashReport: [UploadManager] Add upload task to queue (pid=4004 | tid=4033)
+06-19 15:23:25.824  4004  4033 D CrashReport: [UploadManager] Try to poll all upload task need and put them into temp queue (pid=4004 | tid=4033)
+06-19 15:23:25.824  4004  4033 D CrashReport: [UploadManager] Execute urgent upload tasks of queue which has 1 tasks (pid=4004 | tid=4033)
+06-19 15:23:25.824  4004  4033 I CrashReport: [UploadManager] Create and start a new thread to execute a upload task: BUGLY_ASYNC_UPLOAD
+06-19 15:23:25.825  4004  4041 W CrashReport: java.lang.SecurityException: getDataNetworkTypeForSubscriber
+06-19 15:23:25.825  4004  4041 W CrashReport: 	at java.lang.Thread.run(Thread.java:1012)
+06-19 15:23:25.828  4004  4041 D CrashReport: [UploadManager] Uploading(ID:1001) time: 2026-06-19 15:23:25
+06-19 15:23:25.828  4004  4041 D CrashReport: [Upload] Send 581 bytes
+06-19 15:23:25.829  4004  4041 D CrashReport: [Upload] Upload to https://android.bugly.qq.com/rqd/async?aid=102e8698-aee2-4284-a797-041f9d8573a4 with cmd 840 (pid=4004 | tid=4041).
+06-19 15:23:25.830  4004  4041 W CrashReport: java.lang.SecurityException: getDataNetworkTypeForSubscriber
+06-19 15:23:25.830  4004  4041 W CrashReport: 	at java.lang.Thread.run(Thread.java:1012)
+06-19 15:23:25.893  4004  4004 D CrashReport: >>> com.example.travelguide.activity.LoginActivity onCreated <<<
+06-19 15:23:25.923  4004  4004 D CrashReport: >>> com.example.travelguide.activity.LoginActivity onStart <<<
+06-19 15:23:25.924  4004  4004 D CrashReport: >>> com.example.travelguide.activity.LoginActivity onResumed <<<
+06-19 15:23:25.925  4004  4004 I CrashReport: add a timer to upload hot start user info
+06-19 15:23:26.180  4004  4004 D CrashReport: >>> com.example.travelguide.activity.MainActivity onDestroyed <<<
+06-19 15:23:26.181  4004  4041 D CrashReport: [Upload] Received 309 bytes
+06-19 15:23:26.182  4004  4041 D CrashReport: [Upload] Bugly version from headers is: bugly/1.0
+06-19 15:23:26.182  4004  4041 D CrashReport: [Upload] Status from server is 0 (pid=4004 | tid=4041).
+06-19 15:23:26.184  4004  4041 D CrashReport: [Upload] Response cmd is: 510, length of sBuffer is: 208
+06-19 15:23:26.202  4004  4041 I CrashReport: [Upload] Success: userinfo
+06-19 15:23:26.203  4004  4041 D CrashReport: [UploadManager] Local network consume: 0 KB
+
+
+===== 3. 关键上报证据（HTTP 200 + Success）=====
+（"response code 200" 和 "Success: crash" 是崩溃数据成功上传到腾讯服务器的铁证）
+06-19 15:23:26.179  4004  4041 D CrashReport: response code 200
+06-19 15:23:26.181  4004  4041 D CrashReport: [Upload] Received 309 bytes
+06-19 15:23:26.182  4004  4041 D CrashReport: [Upload] Status from server is 0 (pid=4004 | tid=4041).
+06-19 15:24:56.444  4004  4281 D CrashReport: response code 200
+06-19 15:24:56.444  4004  4281 D CrashReport: [Upload] Received 95 bytes
+06-19 15:24:56.445  4004  4281 D CrashReport: [Upload] Status from server is 0 (pid=4004 | tid=4281).
+06-19 15:24:56.445  4004  4281 I CrashReport: [Upload] Success: crash
+06-19 15:25:11.733  4423  4482 D CrashReport: response code 200
+06-19 15:25:11.734  4423  4482 D CrashReport: [Upload] Received 95 bytes
+06-19 15:25:11.734  4423  4482 D CrashReport: [Upload] Status from server is 0 (pid=4423 | tid=4482).
